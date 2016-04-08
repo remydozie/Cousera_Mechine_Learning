@@ -1,12 +1,12 @@
 ---
-output: pdf_document
+output: html_document
 ---
 
 ###Profile
 ####Title: "Practical Machine Learning: Course Project"
 ####Author: "remydozie"
 ####Date: "5 March 2016"
-####Output: "LaTeX_PDF"
+####Output: "Knit HTML"
 
 ### introduction
 
@@ -108,7 +108,7 @@ testing <- testing[-1,]
 ```
 
 ##### Fit Model & Plot Decision Tree
-```{r,echo = TRUE}
+```{r,fig.align ='center', echo = TRUE}
 modFitA1 <- rpart(classe ~ ., data=myTraining, method="class")
 fancyRpartPlot(modFitA1)
 ```
@@ -127,7 +127,10 @@ confusionMatrix(predictionsB1, myTesting$classe)
 modFitB1 <- randomForest(classe ~. , data=myTraining)
 predictionsB1 <- predict(modFitB1, myTesting, type = "class")
 confusionMatrix(predictionsB1, myTesting$classe)
+```
 
+#### Files for test cases execution 
+```{r,echo = TRUE}
 predictionsB2 <- predict(modFitB1, testing, type = "class")
 pml_write_files = function(x){
 n = length(x)
@@ -138,3 +141,5 @@ write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
 }
 pml_write_files(predictionsB2)
 ```
+
+### Thanks for your time
